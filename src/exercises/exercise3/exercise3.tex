@@ -1,0 +1,61 @@
+\documentclass[11pt]{exam}
+
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{dtklogos}
+\usepackage[T1]{fontenc}
+
+\lstdefinestyle{latexsty}{
+	language={[LaTeX]TeX},
+    basicstyle=\small\ttfamily,
+    breaklines=true,
+    breakindent=0pt, 
+    numbers=left, stepnumber=1, numbersep=5pt,
+    commentstyle=\color{red},
+    showstringspaces=false,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={align,begin},
+    tabsize=2,
+    frame=single,
+}
+
+\pagestyle{headandfoot}
+\runningheader{\LaTeX: An Introduction (Part 2)}{Exercise 3}{21st February 2014}
+\runningheadrule
+\runningfooter{}{\thepage}{}
+\runningfootrule
+
+\title{Exercise 3 - Referencing}
+\author{UGC `\LaTeX: An Introduction (Part 2)' Training Course}
+\date{February 21st 2014}
+
+
+\begin{document}
+\maketitle
+
+\fbox{\parbox{0.9\textwidth}{In this exercise, we will start to look at including bibliographies and referencing within our \LaTeX\ documents}}
+
+\vspace{0.2in}
+
+\begin{questions}
+
+\question
+Add a \texttt{thebibliography} environment to your document.
+\question
+Add some references to your bibliography, and cite them within your text.
+\question
+Compile your document and ensure the references and citations appear correctly.
+\question
+Remove your \texttt{thebibliography} environment and citations. Create an empty ~\texttt{.bib} file in the same directory as your current \LaTeX\ file.
+\question
+Add some \BibTeX\ entries to your bib file. You can make them up, or use real papers by finding the \BibTeX\ online or exporting it from your current reference manager.
+\question
+Add some citations to your document using the \texttt{{\textbackslash}cite} command.
+\question
+Compile your document (following the steps in the lecture slides - remember to use \BibTeX\ as well as \texttt{pdflatex}) and verify your references and citations appear correctly.
+\question
+Experiment with changing the bibliography style. Observe the differences between styles in terms of how the citations appear within the document and how the references are organised in the bibliography.
+\end{questions}
+
+\end{document}

@@ -1,0 +1,28 @@
+\documentclass{beamer}
+\usetheme{default}
+\usecolortheme[RGB={166,5,20}]{structure}
+\setbeamertemplate{navigation symbols}{}
+
+ 
+\begin{document}
+
+\begin{frame}{Columns}
+	Here's a line that goes all the way across the slide, it will be followed by two columns
+	
+	\vfill
+	
+	\begin{columns}
+	\begin{column}{0.3\textwidth}
+		Here's a column that takes up 30 percent of the width of the slide
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		Here's a column that takes up 50 percent of the width of the slide
+	\end{column}
+	\end{columns}
+	
+	\vfill
+	
+	Finally here's a line that goes all the way across the slide again.
+\end{frame}
+
+\end{document}

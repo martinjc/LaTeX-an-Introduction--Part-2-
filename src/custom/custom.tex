@@ -1,0 +1,401 @@
+\documentclass[mathserif]{beamer}
+
+\usepackage{listings}
+\usepackage{showexpl}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{dtklogos}
+\usepackage{caption}
+\usepackage{url}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+
+%\usepackage{handoutwithnotes}
+
+%\pgfpagesuselayout{3 on 1 with notes}[a4paper,border shrink=5mm]
+
+%\pgfpageslogicalpageoptions{1}{border code=\pgfusepath{stroke}}
+%\pgfpageslogicalpageoptions{2}{border code=\pgfusepath{stroke}}
+%\pgfpageslogicalpageoptions{3}{border code=\pgfusepath{stroke}}
+
+\lstdefinestyle{latexsty}{
+	language={[LaTeX]TeX},
+    basicstyle=\small\ttfamily,
+    breaklines=true,
+    breakindent=0pt, 
+    backgroundcolor=\color{lightgray},
+    numbers=none, numberstyle=\tiny, stepnumber=1, numbersep=5pt,
+    commentstyle=\color{red},
+    showstringspaces=false,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={align,begin},
+    tabsize=2,
+    pos=b
+}
+
+\usetheme{default}
+\useoutertheme{infolines}
+\usecolortheme[RGB={166,5,20}]{structure}
+%\setbeamertemplate{items}[circle]
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{caption}[numbered]
+
+\newcommand{\tbs}[1]{\texttt{{\textbackslash}#1}}
+
+
+\title{\LaTeX: An Introduction (Part 2)}
+\subtitle{University Graduate College Training Course}
+\author[Martin Chorley]{Dr Martin Chorley}
+\institute[COMSC]{School of Computer Science \& Informatics, Cardiff University}
+\date[21/02/13]{February 21st, 2013}
+
+
+\begin{document}
+
+
+%--------------- slide -------------------
+\begin{frame}{Customising \LaTeX}
+\vfill
+Up to now we have been using standard \LaTeX\ commands and packages to create documents.
+\vfill
+However, \LaTeX\ is highly customisable, and if we find that we need to do something that is not covered by an existing command, environment or package, we can write our own!
+\vfill
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{Custom \LaTeX\ Commands/Macros}
+\vfill
+We specify our own commands using the \texttt{{\textbackslash}newcommand} command:
+\vfill
+\begin{lstlisting}[style=latexsty]
+\newcommand{name}[num]{definition}
+\end{lstlisting}
+\vfill
+It requires two arguments, the \emph{name} of the new command, and its \emph{definition}. It also has an optional argument (\emph{}num) allowing you to specify how many arguments it takes (up to 9).
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{Custom \LaTeX\ Commands - example}
+\vfill
+\begin{LTXexample}[style=latexsty]
+\newcommand{\ual}{UGC Course on Advanced \LaTeX}
+
+This is the \ual. 
+\end{LTXexample}
+\vfill
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{Custom \LaTeX\ Commands - arguments}
+\vfill
+\begin{LTXexample}[style=latexsty]
+\newcommand{\ualarg}[1]{UGC Course on Advanced \LaTeX\, presented by #1}
+\newcommand{\ualargtwo}[2]{UGC Course on Advanced \LaTeX\, presented by #1 and #2}
+
+This is the \ualarg{Martin}.
+
+This is the \ualargtwo{Martin}{Someone}. 
+\end{LTXexample}
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{Custom \LaTeX\ Commands/Macros}
+\vfill
+You cannot use digits when naming commands/macros, only letters.
+\vfill
+\LaTeX\ will not allow you to create new commands with the same name as existing commands.
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{Custom \LaTeX\ Commands - changing commands}
+\vfill
+If you want to re-use the name of an existing command, or change the definition of an existing command, use the \texttt{{\textbackslash}renewcommand} option:
+\vfill
+\begin{lstlisting}[style=latexsty]
+\renewcommand{name}[num]{definition}
+\end{lstlisting}
+\vfill
+So, for example, to change Chapter headings from 'Chapter' to 'Bigger Section':
+\begin{lstlisting}[style=latexsty]
+\renewcommand{\chaptertitle}{Bigger Section}
+\end{lstlisting}
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{Custom \LaTeX\ Environments}
+\vfill
+We can specify our own environments using the \texttt{{\textbackslash}newenvironment} command:
+\vfill
+\begin{lstlisting}[style=latexsty]
+\newenvironment{name}[num]{before}{after}
+\end{lstlisting}
+\vfill
+Any code given in the \texttt{before} block is processed after the \tbs{begin\{name\}}. Any code given in the \texttt{after} block is processed at the \tbs{end\{name\}}.
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{Custom \LaTeX\ Environments - example}
+\vfill
+\begin{LTXexample}[style=latexsty]
+\newenvironment{dotty}{\noindent\textbullet}{\dotfill}
+
+\begin{dotty}
+Here is some text
+\end{dotty}
+
+\end{LTXexample}
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{Custom \LaTeX\ Environments - counters}
+\vfill
+We can create environments with counters included, much like the Figure or Table environments, by declaring a counter with the \tbs{newcounter} command:
+\vfill
+\begin{lstlisting}[style=latexsty]
+\newcounter{examplecounter}
+\newenvironment{numberedexample}{\refstepcounter{examplecounter}\textbf{Example \arabic{examplecounter}}\qquad}{}
+\end{lstlisting}
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{Custom \LaTeX\ Environments - counters}
+\vfill
+\begin{LTXexample}[style=latexsty]
+\newcounter{examplecounter}
+\newenvironment{numberedexample}{\refstepcounter{examplecounter}\textbf{Example \arabic{examplecounter}}\qquad}{}
+
+\begin{numberedexample}
+An example
+\end{numberedexample}
+
+\end{LTXexample}
+\vfill
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{Source Code in \LaTeX}
+
+\vfill
+The \texttt{listings} package provides us with an easy way to include source code within our \LaTeX\ documents.
+\vfill
+It allows you to use the \texttt{lstlistings} environment to add formatted source code into your document, including features such as line numbers and syntax highlighting.
+\vfill
+
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{The \texttt{listings} package}
+\vfill
+Most simply, we use \texttt{listings} by first including the package in our document:
+\vfill
+\begin{lstlisting}[style=latexsty]
+\usepackage(listings}
+\end{lstlisting}
+\vfill
+and then by including our source code within a \texttt{lstlistings} environment.
+
+\vfill
+
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{The \texttt{listings} package - code input}
+\vfill
+Alternatively, we can input source code directly from the source itself:
+\vfill
+\begin{lstlisting}[style=latexsty]
+\lstinputlisting[language=Java]{source_filename.java}
+\end{lstlisting}
+\vfill
+or import just part of a file:
+\vfill
+\begin{lstlisting}[style=latexsty]
+\lstinputlisting[language=Java, firstline=23, lastline=31]{source_filename.java}
+\end{lstlisting}
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{The \texttt{listings} package - options}
+\vfill
+The \texttt{listings} package supports many different languages and has many different options to control how the code is displayed, including:
+\vfill
+\begin{center}
+	\begin{tabular}{r | l }
+		Type & Use \\
+		\hline
+		\texttt{backgroundcolor} & set the background colour \\
+		\texttt{basicstyle} & set the code font size \\
+		\texttt{captionpos} & set the caption position \\
+		\texttt{commentstyle} & comment style \\
+		\texttt{frame} & add a frame around source code \\		
+		\texttt{morekeywords=\{\ldots\}} & add extra keywords \\
+		\texttt{numbers=left} & where to add line numbers \\
+		\texttt{numbersep} & how much space between numbers and code \\
+		\texttt{numberstyle} & set the style of the line numbers \\		
+		\texttt{showspaces} & add underscores to show spaces \\
+		\texttt{showtabs} & add underscores to show tabs \\
+		\texttt{stepnumber} & how many lines between line numbers \\		
+	\end{tabular}
+\end{center}
+\vfill
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{The \texttt{listings} package - options}
+\vfill
+So, for example, we could define some options for our code as:
+\vfill
+\begin{lstlisting}[style=latexsty]
+\lstset{
+    language=C
+    backgroundcolor=\color{gray}
+    frame=single,
+    numbers=left,
+    numbersep=6pt,
+    numberstyle=\tiny\color{green},
+    stepnumber=2,
+    breaklines=true
+}
+\end{lstlisting}
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{The \texttt{listings} package - styles}
+\vfill
+We can also define styles - or groups of options - so we can format individual pieces of code separately:
+\vfill
+\begin{lstlisting}[style=latexsty]
+\lstdefinestyle{python}{
+    language=Python
+    backgroundcolor=\color{gray}
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny\color{green},
+    stepnumber=2,
+}
+
+\lstdefinestyle{java}{
+    language=Java
+    backgroundcolor=\color{blue}
+    numbers=right,
+    numberstyle=\tiny\color{red},
+    stepnumber=1,
+}
+\end{lstlisting}
+
+\vfill
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{The \texttt{listings} package - styles}
+We can then use our different styles by specifying the style as an option on the listing environment:
+\vfill
+
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\LaTeX\ Tips and Tricks}
+\vfill
+Use \tbs{thispagestyle\{empty\}} to suppress page numbers on a page.
+\vfill
+Use a starred version of a sectioning command to suppress numbering (\tbs{section*\{section\_name\}}).
+\vfill
+Use \tbs{marginpar\{notes in margin\}} to add some notes in the margin of a document - useful when commenting or giving feedback.
+\vfill
+
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\LaTeX\ Tips and Tricks}
+\vfill
+Use the \texttt{hyperref} package to add hyperlinks and navigation in your \texttt{.pdf} output
+\vfill
+\begin{lstlisting}[style=latexsty]
+\usepackage[pdftex,
+    pdfauthor={Martin Chorley},
+    pdftitle={Advanced LaTeX},
+    pdfpagelayout=TwoColumnRight,
+    pdfborder=0
+]{hyperref}
+\end{lstlisting}
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\LaTeX\ Tips and Tricks}
+\vfill
+Use the \tbs{input} command to include multiple \LaTeX\ files within the same document.
+\vfill
+This allows you to separate your document across multiple files.
+\vfill
+\begin{lstlisting}[style=latexsty]
+\begin{document}
+    \input{introduction}
+    \input{results}
+    \input{conclusion}
+\end{document}
+\end{lstlisting}
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\LaTeX\ Tips and Tricks}
+\vfill
+Use the \tbs{rotating} package to rotate items that are too wide to fit on a page.
+\vfill
+\begin{lstlisting}[style=latexsty]
+\usepackage{rotating}
+\begin{document}
+    \begin{sideways}
+        % table or item that is too wide goes here
+    \end{sideways}
+\end{document}
+
+\end{lstlisting}
+\vfill
+Page headers and footers are not affected, only the content within the \texttt{sideways} environment
+\vfill
+\end{frame}
+
+
+
+\end{document}

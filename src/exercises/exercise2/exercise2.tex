@@ -1,0 +1,71 @@
+\documentclass[11pt]{exam}
+
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{color}
+
+
+\lstdefinestyle{latexsty}{
+	language={[LaTeX]TeX},
+    basicstyle=\small\ttfamily,
+    breaklines=true,
+    breakindent=0pt, 
+    numbers=left, stepnumber=1, numbersep=5pt,
+    commentstyle=\color{red},
+    showstringspaces=false,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={align,begin},
+    tabsize=2,
+    frame=single,
+}
+
+\pagestyle{headandfoot}
+\runningheader{\LaTeX: An Introduction (Part 2)}{Exercise 3}{21st February 2014}
+\runningheadrule
+\runningfooter{}{\thepage}{}
+\runningfootrule
+
+\title{Exercise 2 - The Figure Environment}
+\author{UGC `\LaTeX: An Introduction (Part 2)' Training Course}
+\date{February 21st 2014}
+
+
+\begin{document}
+\maketitle
+
+\fbox{\parbox{0.9\textwidth}{In this exercise, we will look at including graphics in our \LaTeX\ documents..}}
+
+\vspace{0.2in}
+
+\begin{questions}
+\question
+If it's not already open, open TeXworks. Either create a new file for this exercise and save it somewhere appropriate, or open an existing file.
+\question
+Find a picture somewhere that you would like to include in your document. Google image search is a good place to start looking.
+\question
+Save the picture in the same folder as your \LaTeX\ document.
+\question
+Add the \texttt{graphicx} package to your document and use the \texttt{{\textbackslash}includegraphics} command to include the image you just saved in your document.
+\question
+Repeat the process and add another image to your document
+\question
+Place a \texttt{figure} environment around one of the images you added previously.
+\question
+Add a caption and a label to the figure.
+\uplevel
+{From here on it will be beneficial if your document includes some large portions of text. If you have started with a blank document, add some text to your document before continuing. (You can copy and paste the text from wherever you like).}
+\question
+Experiment with placing the \LaTeX\ source code for your figure at different points in the document. Where does \LaTeX\ move it to after compiling? 
+\question
+What effect does changing the position specifier have?
+\question
+Add a new figure containing two or more subfigures to your document. 
+\question
+Can you refer to your figures within the text of your document? Is the numbering correct?
+\question
+Experiment with the subfigure layout. Can you create a 4x4 grid of images? Can you arrange three images vertically?
+\question
+Change your document to be double-column. Can you make your figures stretch across both columns?
+\end{questions}
+
+\end{document}

@@ -1,0 +1,458 @@
+\documentclass[mathserif]{beamer}
+
+\usepackage{listings}
+\usepackage{showexpl}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{dtklogos}
+\usepackage{caption}
+\usepackage{url}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+
+%\usepackage{handoutwithnotes}
+
+%\pgfpagesuselayout{3 on 1 with notes}[a4paper,border shrink=5mm]
+
+%\pgfpageslogicalpageoptions{1}{border code=\pgfusepath{stroke}}
+%\pgfpageslogicalpageoptions{2}{border code=\pgfusepath{stroke}}
+%\pgfpageslogicalpageoptions{3}{border code=\pgfusepath{stroke}}
+
+\lstdefinestyle{latexsty}{
+	language={[LaTeX]TeX},
+    basicstyle=\small\ttfamily,
+    breaklines=true,
+    breakindent=0pt, 
+    backgroundcolor=\color{lightgray},
+    numbers=none, numberstyle=\tiny, stepnumber=1, numbersep=5pt,
+    commentstyle=\color{red},
+    showstringspaces=false,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={align,begin},
+    tabsize=2,
+    pos=b
+}
+
+\usetheme{default}
+\useoutertheme{infolines}
+\usecolortheme[RGB={166,5,20}]{structure}
+%\setbeamertemplate{items}[circle]
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{caption}[numbered]
+
+
+\title{\LaTeX: An Introduction (Part 2)}
+\subtitle{University Graduate College Training Course}
+\author[Martin Chorley]{Dr Martin Chorley}
+\institute[COMSC]{School of Computer Science \& Informatics, Cardiff University}
+\date[21/02/14]{February 21st, 2014}
+
+
+\begin{document}
+
+
+%--------------- slide -------------------
+\begin{frame}{Bibliographies in \LaTeX\ \& \BibTeX}
+\vfill
+\LaTeX\ includes basic support for Bibliographies without any extra packages or software. This is fine for relatively small documents with a small number of references.
+\vfill
+For more complicated documents (most papers and theses) you will want to use \BibTeX
+\vfill
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\LaTeX\ Bibliographies}
+\vfill
+The \texttt{thebibliography} environment allows us to specify a basic bibliography. It usually comes at the end of the document, before the \texttt{{\textbackslash}end\{document\}} command.
+\vfill
+\begin{LTXexample}[style=latexsty]
+\begin{thebibliography}{9}
+
+\bibitem{lamport94}
+  Leslie Lamport,
+  \emph{\LaTeX: A Document Preparation System}.
+  Addison Wesley, Massachusetts,
+  2nd Edition,
+  1994.
+
+\end{thebibliography}
+\end{LTXexample}
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\LaTeX\ Bibliographies}
+\vfill
+Once we have a bibliography item we can cite it within our text with the \texttt{{\textbackslash}cite} command.
+\vfill
+\begin{lstlisting}[style=latexsty]
+We refer to items from our bibliography using the cite command~\cite{lamport94}.
+\end{lstlisting}
+\vfill
+We can refer to multiple items in the same citation:
+\vfill
+\begin{lstlisting}[style=latexsty]
+\cite{lamport94, anotherref12, someref2013}
+\end{lstlisting}
+\vfill
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\LaTeX\ Bibliographies - \texttt{natbib}}
+\vfill
+\LaTeX\ bibliography support can be extended simply using the \texttt{natbib} package.
+\vfill
+This allows you to specify the format of references and citations, and other options associated with bibliographies and referencing.
+\vfill 
+However, we won't be covering it today.
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\BibTeX}
+\vfill
+\BibTeX\ allows us to store our bibliographies as separate files (\texttt{.bib}), so keeping our \LaTeX\ source and bibliographic information separate.
+\vfill
+This allows us to re-use \texttt{.bib} files in different documents, or refer to items from many different bibliographies  within the same document.
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\BibTeX\ - data}
+\vfill
+\BibTeX\ files are plain text files in which the data representing the bibliography is structured.
+\vfill
+\begin{lstlisting}[style=latexsty]
+@article{greenwade93,
+    author  = "George D. Greenwade",
+    title   = "The {C}omprehensive {T}ex {A}rchive {N}etwork ({CTAN})",
+    year    = "1993",
+    journal = "TUGBoat",
+    volume  = "14",
+    number  = "3",
+    pages   = "342--351"
+}
+\end{lstlisting}
+\vfill
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\BibTeX\ - data}
+\vfill
+\BibTeX\ recognises many different types of references, including:
+\vfill
+\begin{center}
+	\begin{tabular}{r | l }
+		Type & Use \\
+		\hline
+		\texttt{article} & An article from a journal or magazine \\
+		\texttt{book} & A book \\
+		\texttt{conference} & The same as \texttt{inproceedings} \\
+		\texttt{incollection} & Part of a book \\
+		\texttt{inproceedings} & An article in a conference proceedings \\
+		\texttt{manual} & Technical documentation \\		
+		\texttt{mastersthesis} & A Masters degree thesis \\
+		\texttt{misc} & For when nothing else is applicable \\
+		\texttt{phdthesis} & A PhD degree thesis \\
+		\texttt{proceedings} & The proceedings of a conference \\		
+		\texttt{techreport} & A report published by an institution \\
+		\texttt{unpublished} & A document that has not been formally published \\
+	\end{tabular}
+\end{center}
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\BibTeX\ - @article}
+\vfill
+An \texttt{@article} from a magazine or journal.
+\vfill
+\begin{description}
+	\item[Required Fields] author, title, journal, year
+	\item[Optional Fields] volume, number, pages, month, note
+\end{description}
+\vfill
+\begin{lstlisting}[style=latexsty]
+@article{bibtexkey,
+    author  = "",
+    title   = "",
+    year    = "",
+    journal = "",
+}
+\end{lstlisting}
+\vfill
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\BibTeX\ - @book}
+\vfill
+A \texttt{@book} that has been published.
+\vfill
+\begin{description}
+	\item[Required Fields] author/editor, title, publisher, year
+	\item[Optional Fields] volume/number, series, address, edition, month, note
+\end{description}
+\vfill
+\begin{lstlisting}[style=latexsty]
+@book{bibtexkey,
+    author    = "",
+    title     = "",
+    publisher = "",
+    year      = "",
+}
+\end{lstlisting}
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\BibTeX\ - @inproceedings}
+\vfill
+An article in a conference proceedings
+\vfill
+\begin{description}
+	\item[Required Fields] author, title, booktitle, year
+	\item[Optional Fields] editor, volume/number, series, pages, address, month, organization, publisher, note.
+	\end{description}
+\vfill
+\begin{lstlisting}[style=latexsty]
+@inproceedings{bibtexkey,
+    author    = "",
+    title     = "",
+    booktitle = "",
+    year      = "",
+}
+\end{lstlisting}
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\BibTeX\ - @techreport}
+\vfill
+A technical report from an institution (university, standardisation institute etc).
+\vfill
+\begin{description}
+	\item[Required Fields] author, title, institution, year
+	\item[Optional Fields] type, number, address, month, note
+	\end{description}
+\vfill
+\begin{lstlisting}[style=latexsty]
+@techreport{bibtexkey,
+    author      = "",
+    title       = "",
+    institution = "",
+    year        = "",
+}
+\end{lstlisting}
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\BibTeX\ - @misc}
+\vfill
+Anything that doesn't fit under any of the other types
+\vfill
+\begin{description}
+	\item[Required Fields] none
+	\item[Optional Fields] author, title, how published, month, year, note
+	\end{description}
+\vfill
+\begin{lstlisting}[style=latexsty]
+@techreport{bibtexkey,
+    author       = "",
+    title        = "",
+    howpublished = "",
+    year         = "",
+}
+\end{lstlisting}
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\BibTeX\ - Capitalisation}
+\vfill
+Occasionally, depending on the bibliography style being used, \BibTeX\ may remove capitalisation in titles of bibliography items.
+\vfill
+To preserve capitalisation, surround the items to be capitalised in curly braces.
+\vfill
+\begin{lstlisting}[style=latexsty]
+    title = "The {LaTeX} Companion",
+\end{lstlisting}
+\vfill
+or
+\vfill
+\begin{lstlisting}[style=latexsty]
+    title = {{"The LaTeX Companion"}},
+\end{lstlisting}
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\BibTeX\ - Authors}
+\vfill
+\BibTeX\ is able to deal with multiple authors for bibliographic items elegantly. 
+\vfill
+Names can be added either as \emph{Forename Surname} or \emph{Surname, Forename}.
+\vfill
+To add multiple authors, use 'and' between each author name
+\begin{lstlisting}[style=latexsty]
+	author = "Michel Goossens and Frank Mittelbach and Alexander Samarin"
+\end{lstlisting}
+\vfill
+or
+\vfill
+\begin{lstlisting}[style=latexsty]
+	author = "Goossens, Michel and Mittelbach, Frank and Samarin, Alexander"
+\end{lstlisting}
+\vfill
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\BibTeX\ - Authors}
+\vfill
+The \emph{Surname, Forename} structure is more flexible in general.
+\vfill
+Last name prefixes (\emph{von}, \emph{van}, \emph{der}) are usually handled automatically, but if \BibTeX\ gets it wrong they can be grouped with the surname using curly braces.
+\begin{lstlisting}[style=latexsty]
+	author = "John {von Neumann}"
+\end{lstlisting}
+\vfill
+or
+\vfill
+\begin{lstlisting}[style=latexsty]
+	author = "von Neumann, John"
+\end{lstlisting}
+\vfill
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\BibTeX\ - Urls}
+\vfill
+There is no \BibTeX\ field for URLs. To cite a website, you can use the \texttt{@misc} type and put the URL in the \texttt{howpublished} field. Alternatively, use the \texttt{note} field of \texttt{@techreport}, \texttt{@article}, or \texttt{@book}, 
+\vfill
+It is a good idea to use the \texttt{url} package and the \texttt{url} command when including URLs in \LaTeX\ to ensure proper formatting.
+\vfill
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{Using \BibTeX}
+
+\vfill
+Once we have a \texttt{.bib} file full of bibliographic information, using it in \LaTeX\ is relatively straightforward.
+\vfill
+Throughout our document we use the \texttt{{\textbackslash}cite} command to reference items from our bibliography by their \BibTeX\ keys.
+\vfill
+We use the \texttt{{\textbackslash}bibliographystyle} command at the end of our document to let \BibTeX what style of reference we would like to use.
+\vfill
+We use the \texttt{{\textbackslash}bibliography} command to tell \BibTeX\ which file contains our bibliographic information
+\vfill
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{Using \BibTeX}
+
+\vfill
+We then need to compile our documents a number of times in order to get references inserted in the correct place.
+\begin{enumerate}
+	\item We first run \texttt{latex}/\texttt{pdflatex} to find where there are missing references in the document
+	\item We then run \texttt{bibtex} to extract the correct references from our \texttt{.bib} file.
+	\item We then run \texttt{latex}/\texttt{pdflatex} to compile the document with the bibliography inserted
+	\item We then run \texttt{latex}/\texttt{pdflatex} again to ensure all references are correct.
+\end{enumerate}
+\vfill
+
+\end{frame}
+
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{Using \BibTeX - Example}
+
+\vfill
+Demonstration of using \BibTeX\ within a document.
+\vfill
+
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\BibTeX\ Styles}
+
+\vfill
+There are many different bibliography styles which control how the references within the document and in the bibliography at the end of the document are presented.
+\vfill
+Which style to use will often be specified by a journal publisher/conference organiser.
+\vfill
+Examples of many styles can be found here: \url{http://amath.colorado.edu/documentation/LaTeX/reference/faq/bibstyles.pdf}
+\vfill
+
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\BibTeX\ Tools}
+
+\vfill
+\BibTeX\ is a pretty powerful tool for handling referencing within \LaTeX\ documents.
+\vfill
+However, it can be annoying having to maintain \texttt{.bib} files for all your papers, your thesis, and so on.
+\vfill
+Fortunately, many tools will handle \texttt{.bib} files for you, automatically.
+\vfill
+
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{\BibTeX\ Tools}
+
+\vfill
+Some suggestions:
+\vfill
+\begin{description}
+	\item[Zotero] a web browser plugin for handling references that can output \texttt{.bib} files
+	\item[Mendeley] A reference management application that can export \texttt{.bib} files
+	\item[Google Scholar] can provide \BibTeX\ for any documents you find through it
+\end{description}
+\vfill
+
+\end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{Exercise 3}
+\vfill
+Experiment with adding references into your document.
+\vfill
+Create and fill a \texttt{.bib} file.
+\vfill
+Explore \BibTeX\ styles and usage.
+\vfill
+\end{frame}
+
+
+\end{document}
