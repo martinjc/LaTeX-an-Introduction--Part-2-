@@ -477,53 +477,6 @@ Note that \texttt{h} is automatically replaced by \texttt{ht}, as it can cause p
 
 %--------------- slide -------------------
 \begin{frame}[fragile]
-\frametitle{Cross Referencing}
-\vfill
-If our tables (and later images) are `floating' around the document, they may end up being in a different location to the text describing them. \LaTeX\ provides methods for cross-referencing within documents.
-\vfill
-\texttt{{\textbackslash}label} allows us to label floats and sections:
-\vfill
-\begin{lstlisting}[style=latexsty]
-	\label{label_name}
-\end{lstlisting}
-\vfill
-\texttt{{\textbackslash}ref} allows us to refer back to the labelled float or section:
-\vfill
-\begin{lstlisting}[style=latexsty]
-	\ref{label_name}
-\end{lstlisting}
-\vfill
-\texttt{{\textbackslash}page ref} allows us to refer to the page the labelled float or section is on:
-\vfill
-\begin{lstlisting}[style=latexsty]
-	\pageref{label_name}
-\end{lstlisting}
-\vfill
-When using any form of referencing we are required to compile our document twice, so that \LaTeX\ is able to work out where our references should point to within the document.
-\vfill
-\end{frame}
-
-%--------------- slide -------------------
-\begin{frame}[fragile]
-\frametitle{Cross Referencing}
-\vfill
-\begin{lstlisting}[style=latexsty]
-		\begin{table}[htb]
-		    \centering
-		    \begin{tabular}{|l|}
-		        ... your table here ...
-		    \end{tabular}
-		    \caption{This is my table}
-		    \label{tab:mytable}
-		\end{table}
-		Now in my text I can refer to the Table~\ref{tab:mytable}.
-	\end{lstlisting}
-\vfill
-\end{frame}
-
-
-%--------------- slide -------------------
-\begin{frame}[fragile]
 \frametitle{\texttt{Figure} environment}
 \vfill
 The \texttt{figure} environment allows us to `float' our images, much like the \texttt{table} environment allows us to `float' our \texttt{tabular} environments.
@@ -639,6 +592,8 @@ We can supply position options to the \texttt{subfigure} environment to align th
 \end{frame}
 
 
+
+
 %--------------- slide -------------------
 \begin{frame}[fragile]
 \frametitle{Caption Style}
@@ -663,15 +618,13 @@ Note however, this will force the floats to be either at the top of the page, or
 \vfill
 \end{frame}
 
-
 %--------------- slide -------------------
 \begin{frame}[fragile]
 \frametitle{Cross Referencing}
 \vfill
+If our tables and images are `floating' around the document, they may end up being in a different location to the text describing them. \LaTeX\ provides methods for cross-referencing within documents.
 \vfill
-As with tables, our images `float' around the document and so may end up being in a different location to the text describing them. \LaTeX\ provides methods for cross-referencing within documents. 
-\vfill
-\texttt{{\textbackslash}label} allows us to label floats:
+\texttt{{\textbackslash}label} allows us to label floats and sections:
 \vfill
 \begin{lstlisting}[style=latexsty]
 	\label{label_name}
@@ -683,7 +636,7 @@ As with tables, our images `float' around the document and so may end up being i
 	\ref{label_name}
 \end{lstlisting}
 \vfill
-\texttt{{\textbackslash}pageref} allows us to refer to the page the labelled float or section is on:
+\texttt{{\textbackslash}page ref} allows us to refer to the page the labelled float or section is on:
 \vfill
 \begin{lstlisting}[style=latexsty]
 	\pageref{label_name}
@@ -692,6 +645,25 @@ As with tables, our images `float' around the document and so may end up being i
 When using any form of referencing we are required to compile our document twice, so that \LaTeX\ is able to work out where our references should point to within the document.
 \vfill
 \end{frame}
+
+%--------------- slide -------------------
+\begin{frame}[fragile]
+\frametitle{Cross Referencing}
+\vfill
+\begin{lstlisting}[style=latexsty]
+		\begin{table}[htb]
+		    \centering
+		    \begin{tabular}{|l|}
+		        ... your table here ...
+		    \end{tabular}
+		    \caption{This is my table}
+		    \label{tab:mytable}
+		\end{table}
+		Now in my text I can refer to the Table~\ref{tab:mytable}.
+	\end{lstlisting}
+\vfill
+\end{frame}
+
 
 
 %--------------- slide -------------------
