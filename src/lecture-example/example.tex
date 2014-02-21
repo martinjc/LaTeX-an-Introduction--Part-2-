@@ -84,13 +84,18 @@ This is not a new paragraph.
 	    \begin{subfigure}[b]{0.3\textwidth}
 	        \includegraphics[width=\textwidth]{img/lights}
 	        \caption{Some lights}
+	        \label{fig:lights}
 	    \end{subfigure}
 	    \begin{subfigure}[b]{0.3\textwidth}
 	        \includegraphics[width=\textwidth]{img/bench}
 	        \caption{A bench}
+	        \label{fig:bench}
 	    \end{subfigure}
 	    \caption{Some lights and a bench}
+	    \label{fig:subfigexample}
 	\end{figure*}
+	
+Figure~\ref{fig:subfigexample} on Page~\pageref{fig:subfigexample} shows us two things. In Figure~\ref{fig:lights} we see some lights, and in Figure~\ref{fig:bench} we see a bench.
 
 \lipsum[5-6]
 
