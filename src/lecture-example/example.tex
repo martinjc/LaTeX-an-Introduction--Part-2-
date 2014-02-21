@@ -7,11 +7,15 @@
 \usepackage{amsmath}
 \usepackage{subcaption}
 
+\newcommand{\testcmd}[3]{This is a test command with arguments: #1, #2, #3}
+
+
 \setlength{\parindent}{0pt}
 
 \title{A Test \LaTeX\ Document}
 \author{Martin Chorley}
 \date{February 2013}
+
 \begin{document}
 
 \maketitle
@@ -21,6 +25,9 @@
 \end{abstract}
 
 \section*{Introduction}
+
+\testcmd{Hello}{World}
+
 \onehalfspacing
 {\Huge Hello World!} This is       my       first       \LaTeX\     document.
 This is not a new paragraph.
