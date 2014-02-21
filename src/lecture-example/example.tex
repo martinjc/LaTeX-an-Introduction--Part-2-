@@ -5,6 +5,7 @@
 \usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{subcaption}
 
 \setlength{\parindent}{0pt}
 
@@ -78,6 +79,19 @@ This is not a new paragraph.
 
 \end{table}
 
+	\begin{figure*}[htb]
+	    \centering
+	    \begin{subfigure}[b]{0.3\textwidth}
+	        \includegraphics[width=\textwidth]{img/lights}
+	        \caption{Some lights}
+	    \end{subfigure}
+	    \begin{subfigure}[b]{0.3\textwidth}
+	        \includegraphics[width=\textwidth]{img/bench}
+	        \caption{A bench}
+	    \end{subfigure}
+	    \caption{Some lights and a bench}
+	\end{figure*}
+
 \lipsum[5-6]
 
 \section{Tables}
@@ -127,6 +141,9 @@ second row & last cell \\
 \setlength\fboxsep{0pt}
 \fbox{\includegraphics[width=0.5\textwidth]{img/django.jpg}}
 
+
+
+\section{Maths}
 
 \[ \int_0^\infty x^2\,dx \]
 
